@@ -60,9 +60,9 @@ func checkProxy(proxy Proxy, wg *sync.WaitGroup, errChan chan error, activeFile 
                 Timeout:   3 * time.Second, // set timeout to 3
         }
 
-        resp, err := client.Get("https://raw.githubusercontent.com/wildy2832/testconnection/main/test.txt")
+        resp, err := client.Get("https://raw.githubusercontent.com/wildy2974/TestConnection/main/test.txt")
         if err != nil {
-                resp, err = client.Get("http://raw.githubusercontent.com/wildy2832/testconnection/main/test.txt")
+                resp, err = client.Get("https://raw.githubusercontent.com/wildy2974/TestConnection/main/test.txt")
         }
         if err != nil {
                 log.Printf("[%s:%s] Failed connect to github.com", proxy.Ip, proxy.Port)
@@ -80,7 +80,7 @@ func checkProxy(proxy Proxy, wg *sync.WaitGroup, errChan chan error, activeFile 
                 return
         }
 
-        if strings.TrimSpace(string(body)) != "TEST CONNECTION SUCCESSFUL" {
+        if strings.TrimSpace(string(body)) != "Connected" {
                 log.Printf("[%s:%s] Response does not match expected value.", proxy.Ip, proxy.Port)
                 proxy.Status = 0 // Set status to 0 if response does not match expected value
                 return
